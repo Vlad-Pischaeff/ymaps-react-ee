@@ -1,10 +1,12 @@
-import { useInput } from "../hooks/input.hook"
+import { useContext } from "react";
+import { useInput } from "../hooks/input.hook";
+import { context } from '../hooks/service';
 
-export default function Form(props) {
+export default function Form() {
+  const { EE, placing, myMap } = useContext(context)
   const city = useInput();
   const street = useInput();
   const building = useInput();
-  const { address, setAddress, myMap } = props;
 
   function Address(city, street, building) {
     this.city = city.value;
@@ -15,7 +17,11 @@ export default function Form(props) {
   const getCoordinates = a => {
     let str =  a.city + ' ' + a.street + ' ' + a.building;
     let myGeocoder = myMap.map.geocode(str.toLowerCase());
-    return myGeocoder.then(res => res.geoObjects.get(0).geometry.getCoordinates());
+    return myGeocoder.then(res => {
+      return (res.geoObjects.get(0) !== undefined)
+        ? res.geoObjects.get(0).geometry.getCoordinates()
+        : [52.96, 63.13];
+    });
   }
 
   const formSubmit = async (e) => {
@@ -23,14 +29,14 @@ export default function Form(props) {
     if (city.value && street.value && building.value) {
       let addr = new Address(city, street, building);
       addr.coord = await getCoordinates(addr);
-      setAddress([ ...address, addr]);
+      EE.emit('set', [ ...placing, addr]);
       building.onFocus();
       street.onFocus();
       city.onFocus();
     }
   }
 
-  const formReset = () => setAddress([]);
+  const formReset = () => EE.emit('reset');
 
   return (
       <form onSubmit={formSubmit} onReset={formReset} >

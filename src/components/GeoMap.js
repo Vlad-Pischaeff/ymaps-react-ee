@@ -1,9 +1,11 @@
 import { YMaps, Map, Polyline, Placemark } from 'react-yandex-maps';
+import { context } from '../hooks/service';
+import { useContext } from 'react';
 import myIcon from '../helpers/myIcon2.svg';
 
-export default function GeoMap(props) {
-  const { address, setAddress, myMap, setMyMap } = props;
-  const coordinates = address.map(n => n.coord);
+export default function GeoMap() {
+  const { EE, placing, myMap, setMyMap } = useContext(context);
+  const coordinates = placing.map(n => n.coord);
   const placemark = { modules: ['geoObject.addon.hint', 'geoObject.addon.balloon'],
                       options: {  iconLayout: 'default#image',
                                   iconImageHref: myIcon,
@@ -18,7 +20,7 @@ export default function GeoMap(props) {
   const handleDragend = async (e, i) => {
     let obj = {};
     let point = e.originalEvent.target.geometry._coordinates;
-    const arr = [ ...address ];
+    const arr = [ ...placing ];
     let addr = await getGeoAddress(point);
     if (addr) {
       let elem = addr.split(',');
@@ -29,7 +31,7 @@ export default function GeoMap(props) {
     }
     obj['coord'] = point;
     arr[i] = obj;
-    setAddress(arr);
+    EE.emit('set', arr);
   }
 
   const getGeoAddress = (point) => {
@@ -42,12 +44,12 @@ export default function GeoMap(props) {
       })
   }
 
-  const listPlacemarks = address.map((item, i) => {
+  const listPlacemarks = placing.map((item, i) => {
     return (
       <Placemark {...placemark} key={`placemark-${i}`} geometry={item.coord}
                   onDragend={(e) => handleDragend(e, i)}
                   properties={{
-                    balloonContent : `${address[i]['city']} ,${address[i]['street']} ,${address[i]['building']}`,
+                    balloonContent : `${placing[i]['city']} ,${placing[i]['street']} ,${placing[i]['building']}`,
                   }} />
     )
   });
@@ -55,7 +57,7 @@ export default function GeoMap(props) {
   // console.log('GeoMap render...', address);
 
   return (
-    <YMaps query={{ lang: 'ru_RU' , apikey: 'Your API-key' }}>
+    <YMaps query={{ lang: 'ru_RU' , apikey: 'cf1b8beb-bb0c-4563-9d28-c603002dd2ad' }}>
       <Map  className="map" 
             defaultState={{ center: [52.96, 63.13], zoom: 7 }}
             onLoad={(ymaps) => setMyMap({ 'map': ymaps})} 

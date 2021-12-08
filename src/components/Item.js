@@ -1,8 +1,11 @@
 import { useState, useRef } from 'react';
+import { context } from '../hooks/service';
+import { useContext } from 'react/cjs/react.development';
 import iconClose from '../helpers/icons8-close.svg'
 
 export default function Item(props) {
-  const { addr, idx, removeItem, setDroppedItemIdx, setDraggedItemIdx, draggedItemIdx } = props;
+  const { EE } = useContext(context);
+  const { addr, idx, setDroppedItemIdx, setDraggedItemIdx, draggedItemIdx } = props;
   const [ style, setStyle ] = useState({});
   const [ dragover, setDragover ] = useState(false);
   const itemRef = useRef();
@@ -52,7 +55,7 @@ export default function Item(props) {
         <div>{addr.street}, {addr.building}, [{addr.coord[0]}, {addr.coord[1]}]</div>
       </section>
       <section className="right-section">
-        <img src={iconClose} alt="iconClose" className="icon-close" onClick={() => removeItem(idx)} />
+        <img src={iconClose} alt="iconClose" className="icon-close" onClick={() => EE.emit('remove item', idx)} />
       </section>
     </li>
   )
