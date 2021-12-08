@@ -31,7 +31,7 @@ export const useLocation = () => {
       EE.off('reorder items');
     }
   }, [])
-  console.log('useLocation...', placing);
+
   return { placing };
 }
 
