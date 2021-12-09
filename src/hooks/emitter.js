@@ -50,11 +50,11 @@ export default class EventEmitter {
    */
   _addCallback(eventName, callback, context, weight) {
     this._getCallbacks(eventName)
-      .push({
-        callback,
-        context,
-        weight
-      });
+        .push({
+          callback,
+          context,
+          weight
+        });
 
     // @todo instead of sorting insert to right place in Array.
     // @link http://rjzaworski.com/2013/03/composition-in-javascript
@@ -62,7 +62,7 @@ export default class EventEmitter {
     // Sort the array of callbacks in
     // the order of their call by "weight".
     this._getCallbacks(eventName)
-      .sort((a, b) => b.weight - a.weight);
+        .sort((a, b) => b.weight - a.weight);
 
     return this;
   }
