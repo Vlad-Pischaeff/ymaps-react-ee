@@ -31,8 +31,9 @@ export default class EventEmitter {
 
     self._events = new Set();
     self._console = localConsole;
-    self._maxListeners = maxListeners === null ?
-      null : parseInt(maxListeners, 10);
+    self._maxListeners = maxListeners === null 
+      ? null 
+      : parseInt(maxListeners, 10);
 
     return this;
   }
@@ -86,9 +87,10 @@ export default class EventEmitter {
    * @return {number|null}
    */
   _getCallbackIndex(eventName, callback) {
-    return this._has(eventName) ?
-      this._getCallbacks(eventName)
-        .findIndex(element => element.callback === callback) : -1;
+    return this._has(eventName) 
+      ? this._getCallbacks(eventName)
+        .findIndex(element => element.callback === callback) 
+      : -1;
   }
 
   /**
@@ -114,11 +116,13 @@ export default class EventEmitter {
    */
   _callbackIsExists(eventName, callback, context) {
     const callbackInd = this._getCallbackIndex(eventName, callback);
-    const activeCallback = callbackInd !== -1 ?
-      this._getCallbacks(eventName)[callbackInd] : void 0;
+    const activeCallback = callbackInd !== -1 
+      ? this._getCallbacks(eventName)[callbackInd] 
+      : void 0;
 
-    return (callbackInd !== -1 && activeCallback &&
-      activeCallback.context === context);
+    return (callbackInd !== -1 && 
+            activeCallback &&
+            activeCallback.context === context);
   }
 
   /**
@@ -234,33 +238,12 @@ export default class EventEmitter {
    * @return {this}
    */
   emit(eventName/* , ...args*/) {
-    /*
-      if (this._has(eventName)) {
-        this._getCallbacks(eventName)
-          .forEach(element =>
-            element.callback.call(element.context, args)
-          );
-      }
-    */
-
-    // It works ~3 times faster.
     const custom = _callbacks[eventName];
 
-    // Number of callbacks.
-    // let i = custom ? custom.length : 0;
-    // let current;
-    let [action,  ...args] = Object.values(arguments);
+    // Number of callbacks arguments...
+    let [,  ...args] = Object.values(arguments);
 
-    // while (i--) {
-    //   current = custom[i];
-    //   current.callback.apply(current.context, args);
-    // }
-    custom.forEach(element => {
-      element.callback.apply(element.context, args);
-    });
-
-    // Just clean it.
-    args = null;
+    custom.forEach(el => el.callback.apply(el.context, args));
 
     return this;
   }
@@ -286,7 +269,8 @@ export default class EventEmitter {
    *                         or null if event isn't exists.
    */
   listenersNumber(eventName) {
-    return this._has(eventName) ?
-      _callbacks[eventName].length : null;
+    return this._has(eventName) 
+      ? _callbacks[eventName].length 
+      : null;
   }
 }
