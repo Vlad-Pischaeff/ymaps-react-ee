@@ -1,9 +1,10 @@
-import { useContext } from "react";
 import { useInput } from "../hooks/input.hook";
-import { context } from '../hooks/service';
+import { useMapContext } from "../hooks/mapcontext.hook";
+import { useLocationContext } from '../hooks/location.hook';
 
 export default function Form() {
-  const { EE, placing, myMap } = useContext(context)
+  const { EE, placing } = useLocationContext()
+  const { myMap } = useMapContext();
   const city = useInput();
   const street = useInput();
   const building = useInput();

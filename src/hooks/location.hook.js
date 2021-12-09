@@ -1,7 +1,13 @@
-import { useState, useEffect, createContext, useRef } from 'react'
-import EventEmitter from './emitter'
+import { useState, useEffect, createContext, useRef, useContext } from 'react';
+import EventEmitter from './emitter';
 
 export const EE = new EventEmitter()
+
+export const LocationContext = createContext();
+
+export const useLocationContext = () => {
+  return useContext(LocationContext);
+}
 
 export const useLocation = () => {
   const [ placing, setPlacing ] = useState([]);
@@ -32,7 +38,6 @@ export const useLocation = () => {
     }
   }, [])
 
-  return { placing };
+  return placing;
 }
 
-export const context = createContext();

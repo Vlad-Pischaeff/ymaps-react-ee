@@ -1,3 +1,5 @@
+I used the eventEmitter on purpose, although in this case it is possible to do without it...
+
 # Getting Started
 
 - Enter Your Yandex API-key in GeoMap.js component

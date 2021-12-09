@@ -1,10 +1,9 @@
 import { useState, useRef } from 'react';
-import { context } from '../hooks/service';
-import { useContext } from 'react/cjs/react.development';
-import iconClose from '../helpers/icons8-close.svg'
+import { useLocationContext } from '../hooks/location.hook';
+import iconClose from '../img/icons8-close.svg'
 
 export default function Item(props) {
-  const { EE } = useContext(context);
+  const { EE } = useLocationContext();
   const { addr, idx, setDroppedItemIdx, setDraggedItemIdx, draggedItemIdx } = props;
   const [ style, setStyle ] = useState({});
   const [ dragover, setDragover ] = useState(false);
@@ -52,7 +51,8 @@ export default function Item(props) {
         onDrop={dropHandler}>
       <section className="left-section">
         <div>{addr.city}</div>
-        <div>{addr.street}, {addr.building}, [{addr.coord[0]}, {addr.coord[1]}]</div>
+        <div>{addr.street}, {addr.building}</div>
+        <p style={{color: '#666'}}>[{addr.coord[0]}, {addr.coord[1]}]</p>
       </section>
       <section className="right-section">
         <img src={iconClose} alt="iconClose" className="icon-close" onClick={() => EE.emit('remove item', idx)} />

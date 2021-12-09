@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useContext } from 'react/cjs/react.development';
-import { context } from '../hooks/service';
+import { useLocationContext } from '../hooks/location.hook';
 import Item from './Item';
 
 export default function RouteList() {
-  const { EE, placing } = useContext(context);
+  const { EE, placing } = useLocationContext();
   const [ draggedItemIdx, setDraggedItemIdx ] = useState();
   const [ droppedItemIdx, setDroppedItemIdx ] = useState();
 
