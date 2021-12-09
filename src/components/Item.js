@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useLocationContext } from '../hooks/location.hook';
 import iconClose from '../img/icons8-close.svg'
 
@@ -7,7 +7,6 @@ export default function Item({params}) {
   const { addr, idx, setDroppedItemIdx, setDraggedItemIdx, draggedItemIdx } = params;
   const [ style, setStyle ] = useState({});
   const [ dragover, setDragover ] = useState(false);
-  const itemRef = useRef();
 
   const dragStart = (e) => {
     setDraggedItemIdx(idx);
@@ -46,7 +45,7 @@ export default function Item({params}) {
   }
 
   return (
-    <li className="addr-wrap" ref={itemRef} draggable="true" style={style}
+    <li className="addr-wrap" draggable="true" style={style}
         onDragStart={dragStart}
         onDragLeave={dragLeave}
         onDragOver={dragOver}
