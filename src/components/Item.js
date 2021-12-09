@@ -2,9 +2,9 @@ import { useState, useRef } from 'react';
 import { useLocationContext } from '../hooks/location.hook';
 import iconClose from '../img/icons8-close.svg'
 
-export default function Item(props) {
+export default function Item({params}) {
   const { EE } = useLocationContext();
-  const { addr, idx, setDroppedItemIdx, setDraggedItemIdx, draggedItemIdx } = props;
+  const { addr, idx, setDroppedItemIdx, setDraggedItemIdx, draggedItemIdx } = params;
   const [ style, setStyle ] = useState({});
   const [ dragover, setDragover ] = useState(false);
   const itemRef = useRef();

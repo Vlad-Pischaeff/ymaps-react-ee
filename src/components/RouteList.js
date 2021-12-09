@@ -19,12 +19,9 @@ export default function RouteList() {
 
   return (
     <ul className="route-wrap">
-      {placing.map((a, i) => {
+      {placing.map((addr, idx) => {
         return (
-          <Item key={i} addr={a} idx={i}
-                setDraggedItemIdx={setDraggedItemIdx}
-                setDroppedItemIdx={setDroppedItemIdx} 
-                draggedItemIdx={draggedItemIdx}/>
+          <Item key={idx} params={{ addr, idx, setDraggedItemIdx, setDroppedItemIdx, draggedItemIdx }} />
         )
       })}
     </ul>
