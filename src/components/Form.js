@@ -18,11 +18,10 @@ export default function Form() {
   const getCoordinates = a => {
     let str =  a.city + ' ' + a.street + ' ' + a.building;
     let myGeocoder = myMap.map.geocode(str.toLowerCase());
-    return myGeocoder.then(res => {
-      return (res.geoObjects.get(0) !== undefined)
-        ? res.geoObjects.get(0).geometry.getCoordinates()
-        : [52.96, 63.13];
-    });
+    return myGeocoder.then(res => res?.geoObjects?.get(0)
+                                    ? res.geoObjects.get(0).geometry.getCoordinates()
+                                    : [52.96, 63.13]
+    );
   }
 
   const formSubmit = async (e) => {

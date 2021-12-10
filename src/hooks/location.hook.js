@@ -24,9 +24,10 @@ export const useLocation = () => {
                                   });
     EE.on('reorder items', (obj) => { // idx1 - index of dragged element
                                       // idx2 - where drop new element
+                                      let idx = Object.values(obj);
                                       let arr = [...locRef.current];
-                                      let item = arr.splice(obj.idx1, 1);
-                                      arr.splice(obj.idx2, 0, item[0]);
+                                      let item = arr.splice(idx[0], 1);
+                                      arr.splice(idx[1], 0, item[0]);
                                       setPlacing(arr);
                                   });
 
