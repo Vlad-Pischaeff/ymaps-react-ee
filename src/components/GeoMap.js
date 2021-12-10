@@ -59,7 +59,7 @@ export default function GeoMap() {
   // console.log('GeoMap render...', address);
 
   return (
-    <YMaps query={{ lang: 'ru_RU' , apikey: 'place Your own API-key here...' }}>
+    <YMaps query={{ lang: 'ru_RU' , apikey: 'cf1b8beb-bb0c-4563-9d28-c603002dd2ad' }}>
       <Map  className="map" 
             defaultState={{ center: [52.96, 63.13], zoom: 7 }}
             onLoad={(ymaps) => setMyMap({ 'map': ymaps})} 
