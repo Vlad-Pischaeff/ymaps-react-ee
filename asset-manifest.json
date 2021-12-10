@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/ymaps-react-ee/static/css/main.5b0e5075.chunk.css",
+    "main.js": "/ymaps-react-ee/static/js/main.611ea47e.chunk.js",
+    "main.js.map": "/ymaps-react-ee/static/js/main.611ea47e.chunk.js.map",
+    "runtime-main.js": "/ymaps-react-ee/static/js/runtime-main.4fe7f1ca.js",
+    "runtime-main.js.map": "/ymaps-react-ee/static/js/runtime-main.4fe7f1ca.js.map",
+    "static/js/2.cef3d5fa.chunk.js": "/ymaps-react-ee/static/js/2.cef3d5fa.chunk.js",
+    "static/js/2.cef3d5fa.chunk.js.map": "/ymaps-react-ee/static/js/2.cef3d5fa.chunk.js.map",
+    "static/js/3.4438777a.chunk.js": "/ymaps-react-ee/static/js/3.4438777a.chunk.js",
+    "static/js/3.4438777a.chunk.js.map": "/ymaps-react-ee/static/js/3.4438777a.chunk.js.map",
+    "index.html": "/ymaps-react-ee/index.html",
+    "static/css/main.5b0e5075.chunk.css.map": "/ymaps-react-ee/static/css/main.5b0e5075.chunk.css.map",
+    "static/js/2.cef3d5fa.chunk.js.LICENSE.txt": "/ymaps-react-ee/static/js/2.cef3d5fa.chunk.js.LICENSE.txt",
+    "static/media/icons8-close.e302745f.svg": "/ymaps-react-ee/static/media/icons8-close.e302745f.svg",
+    "static/media/myIcon2.55d63feb.svg": "/ymaps-react-ee/static/media/myIcon2.55d63feb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4fe7f1ca.js",
+    "static/js/2.cef3d5fa.chunk.js",
+    "static/css/main.5b0e5075.chunk.css",
+    "static/js/main.611ea47e.chunk.js"
+  ]
+}
