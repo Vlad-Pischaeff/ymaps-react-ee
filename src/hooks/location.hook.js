@@ -9,7 +9,7 @@ export const useLocationContext = () => {
   return useContext(LocationContext);
 }
 
-export const useLocation = () => {
+export const LocationContextProvider = ({ children }) => {
   const [ placing, setPlacing ] = useState([]);
   const locRef = useRef(placing);
 
@@ -39,6 +39,9 @@ export const useLocation = () => {
     }
   }, [])
 
-  return placing;
+  return (
+    <LocationContext.Provider value={{placing}}>
+      {children}
+    </LocationContext.Provider>
+  );
 }
-

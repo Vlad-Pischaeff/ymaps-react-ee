@@ -6,10 +6,14 @@ export const useMapContext = () => {
   return useContext(MapContext);
 }
 
-export const useMap = () => {
+export const MapContextProvider = ({ children }) => {
   const [ myMap, setMyMap ] = useState({});
 
-  const mapContext = useMemo(() => ({ myMap, setMyMap }), [ myMap ]);
+  const mapMemo = useMemo(() => ({ myMap, setMyMap }), [ myMap ]);
 
-  return mapContext;
+  return (
+    <MapContext.Provider value={mapMemo}>
+      {children}
+    </MapContext.Provider>
+  );
 }

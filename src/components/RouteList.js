@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocationContext } from '../hooks/location.hook';
+import { useLocationContext, EE } from '../hooks/location.hook';
 import Item from './Item';
 
 export default function RouteList() {
-  const { EE, placing } = useLocationContext();
+  const { placing } = useLocationContext();
   const [ draggedItemIdx, setDraggedItemIdx ] = useState();
   const [ droppedItemIdx, setDroppedItemIdx ] = useState();
   let img = new Image(); 

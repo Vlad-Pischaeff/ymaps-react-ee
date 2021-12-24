@@ -1,11 +1,10 @@
 import { YMaps, Map, Polyline, Placemark } from 'react-yandex-maps';
-import { useLocationContext } from '../hooks/location.hook';
+import { useLocationContext, EE } from '../hooks/location.hook';
 import { useMapContext } from '../hooks/mapcontext.hook';
 import myIcon from '../img/myIcon2.svg';
 
-
 export default function GeoMap() {
-  const { EE, placing } = useLocationContext();
+  const { placing } = useLocationContext();
   const { myMap, setMyMap } = useMapContext();
   const coordinates = placing.map(n => n.coord);
   const placemark = { modules: ['geoObject.addon.hint', 'geoObject.addon.balloon'],
@@ -56,10 +55,8 @@ export default function GeoMap() {
     )
   });
 
-  // console.log('GeoMap render...', address);
-
   return (
-    <YMaps query={{ lang: 'ru_RU' , apikey: 'put Your API-key here...' }}>
+    <YMaps query={{ lang: 'ru_RU' , apikey: 'Your Yandex API-key...' }}>
       <Map  className="map" 
             defaultState={{ center: [52.96, 63.13], zoom: 7 }}
             onLoad={(ymaps) => setMyMap({ 'map': ymaps})} 
